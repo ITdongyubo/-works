@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;}
+body,html{overflow:hidden;}
+div{width:700px;height:400px;margin:100px auto;position:relative;background:url(img/2.jpg) no-repeat;
+perspective:800px;-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;-ms-transform-style:preserve-3d;-0-transform-style:preserve-3d;transform-style:preserve-3d;}
+div span{position:absolute;background:url(img/1.jpg) no-repeat;
+-webkit-transform:translate(0,0) rotateX(0deg) rotateY(0deg);
+-moz-transform:translate(0,0) rotateX(0deg) rotateY(0deg);
+-ms-transform:translate(0,0) rotateX(0deg) rotateY(0deg);
+-o-transform:translate(0,0) rotateX(0deg) rotateY(0deg);
+transform:translate(0,0) rotateX(0deg) rotateY(0deg);}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oBox = document.querySelector('.box');
+	var C=7;
+	var R=4;
+	var iNow=0;
+	for(var i=0; i<R;i++){
+		for(var j=0; j<C;j++){
+			var oSpan = document.createElement('span');
+			oSpan.style.width=oBox.offsetWidth/R+'px';
+			oSpan.style.height=oBox.offsetHeight/C+'px';
+			oBox.appendChild(oSpan);
+			oSpan.style.top=j*oSpan.offsetHeight+'px';
+			oSpan.style.left=i*oSpan.offsetWidth+'px';
+			oSpan.style.backgroundPosition='-'+i*oSpan.offsetWidth+'px -'+j*oSpan.offsetHeight+'px';
+		}
+	}
+	function rnd(n,m){
+		return Math.floor(n+Math.random()*(m-n));
+	} 
+	var bOk = false;
+	oBox.onclick=function(){
+		if(bOk)return;
+		bOk = true;
+		iNow++
+		var aS = document.querySelectorAll('.box span');
+		for(var i=0;i<aS.length;i++){
+			aS[i].style.WebkitTransition='1s all ease';
+			aS[i].style.MozTransition='1s all ease';
+			aS[i].style.msTransition='1s all ease';
+			aS[i].style.OTransition='1s all ease';
+			var disX = aS[i].offsetLeft+aS[i].offsetWidth/2-oBox.offsetWidth/2;
+			var disY = aS[i].offsetTop+aS[i].offsetHeight/2-oBox.offsetHeight/2;
+			aS[i].style.WebkitTransform='translate('+disX+'px,'+disY+'px) rotateX('+rnd(-180,180)+'deg) rotateY('+rnd(-180,180)+'deg)';
+			aS[i].style.MozTransform='translate('+disX+'px,'+disY+'px) rotateX('+rnd(-180,180)+'deg) rotateY('+rnd(-180,180)+'deg)';
+			aS[i].style.msTransform='translate('+disX+'px,'+disY+'px) rotateX('+rnd(-180,180)+'deg) rotateY('+rnd(-180,180)+'deg)';
+			aS[i].style.OTransform='translate('+disX+'px,'+disY+'px) rotateX('+rnd(-180,180)+'deg) rotateY('+rnd(-180,180)+'deg)';
+			aS[i].style.Transform='translate('+disX+'px,'+disY+'px) rotateX('+rnd(-180,180)+'deg) rotateY('+rnd(-180,180)+'deg)';
+			aS[i].style.opacity=0;
+		}
+		aS[aS.length-1].addEventListener('transitionend',function(){
+			for(var i=0;i<aS.length;i++){
+				aS[i].style.WebkitTransition='none';
+				aS[i].style.MozTransition='none';
+				aS[i].style.msTransition='none';
+				aS[i].style.OTransition='none';
+				aS[i].style.backgroundImage='url(img/'+(iNow%3+1)+'.jpg)'
+				aS[i].style.opacity=1;
+				aS[i].style.WebkitTransform='translate(0,0) rotateX(0deg) rotateY(0deg)';
+				aS[i].style.MozTransform='translate(0px,0px) rotateX(0deg) rotateY(0deg)';
+				aS[i].style.msTransform='translate(0px,0px) rotateX(0deg) rotateY(0deg)';
+				aS[i].style.OTransform='translate(0px,0px) rotateX(0deg) rotateY(0deg)';
+				oBox.style.backgroundImage='url(img/'+((iNow+1)%3+1)+'.jpg)';
+			}
+			bOk = false;
+		},false)
+	};
+},false);
+</script>
+</head>
+
+<body>
+<div class="box"></div>
+</body>
+</html>
