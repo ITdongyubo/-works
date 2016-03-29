@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+
+.dy_hd1{height:37px;border-top:3px solid #00925f; background:url(../images/2.png) no-repeat #2b2b2b 77px 10px;overflow:hidden;}
+.dy_hd1 ul{ margin-right: 35px; }
+.dy_hd1 li{ height: 37px; padding-top: 11px; }
+.dy_hd1 a{border-right:1px solid #474747; font-size: 12px; color: #b2b2b2; padding: 0 15px; height: 17px; display: block; }
+.dy_hd1 .gw{ background: url(../images/3.png) no-repeat; padding-left: 22px; margin-left: 15px; }
+
+
+.dy_hd2{height:85px;border-bottom:3px solid #e1e1e1;
+background:url(../images/1.png) no-repeat #fff 76px 32px;overflow:hidden;}
+.dy_hd2 li{text-align:center;line-height:85px;margin-right:40px;}
+.dy_hd2 a{font-size:12px;color:#2b2b2b;}
+
+.dy_hd3{height:617px;position:relative;}
+.dy_hd3 .wq{height:68px;width:1333px;background:red;position:absolute;left:0;bottom:0;}
+
+
